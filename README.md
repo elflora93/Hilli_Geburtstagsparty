@@ -14,9 +14,7 @@ Einladungsseite im Stil von party-2026 – in Türkis mit Leo-Muster, Dreiecken 
 ## Anmeldung
 Das Formular fragt: Name, Zu-/Absage, Erwachsene, Kinder, Buffet (Kuchen/Salat/nein),
 Übernachtung im Zelt (Personen, eigenes Zelt ja/nein) und Kommentar.
-Solange `ZIEL_URL` im Skript leer ist, läuft das Formular im Testmodus und speichert nichts.
-Für echte Anmeldungen eine Google-Tabelle mit Apps Script anlegen (wie bei Christoph)
-und die Web-App-Adresse bei `ZIEL_URL` eintragen.
+Die Anmeldungen landen in der Google-Tabelle „Hilli Anmeldungen“ (Apps Script, Adresse steht bei `ZIEL_URL`).
 
 ## Passwort
 Christophs Seite ist mit einem Passwort verschlüsselt. Das kann hier ergänzt werden, sobald die Inhalte fertig sind.
