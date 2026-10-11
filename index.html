@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Hillis Gartenparty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  /* Layout: eine schmale Spalte wie ein Einladungsstapel – Karten leicht schief, Akzente in Türkis und Leo */
+  :root { --tuerkis:#1cc6bb; --tuerkis-hell:#bff3ee; --tuerkis-tief:#0b8a83; --petrol:#0d3437;
+          --text:#163033; --leise:#4f6a6c; --weiss:#fff; --leo:#e8c088; --leo-dunkel:#2b1a10;
+          --marker:"Permanent Marker", "Marker Felt", "Chalkboard SE", "Comic Sans MS", cursive;
+          --body:Nunito, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          --leo-muster:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'%3E%3Crect width='90' height='90' fill='%23e8c088'/%3E%3Cg fill='%23c4843f'%3E%3Cellipse cx='22' cy='22' rx='9' ry='7'/%3E%3Cellipse cx='64' cy='34' rx='8' ry='7'/%3E%3Cellipse cx='36' cy='66' rx='9' ry='7'/%3E%3C/g%3E%3Cg fill='none' stroke='%232b1a10' stroke-width='4.2' stroke-linecap='round'%3E%3Cpath d='M12 20 Q13 12 21 12'/%3E%3Cpath d='M30 15 Q34 22 29 29'/%3E%3Cpath d='M23 31 Q15 31 13 26'/%3E%3Cpath d='M55 31 Q56 25 63 25'/%3E%3Cpath d='M71 28 Q75 34 71 41'/%3E%3Cpath d='M64 44 Q57 44 55 39'/%3E%3Cpath d='M26 64 Q27 56 35 56'/%3E%3Cpath d='M44 59 Q48 66 43 73'/%3E%3Cpath d='M36 76 Q29 76 26 71'/%3E%3C/g%3E%3Cg fill='%232b1a10'%3E%3Ccircle cx='48' cy='12' r='3'/%3E%3Ccircle cx='82' cy='12' r='2.2'/%3E%3Ccircle cx='8' cy='48' r='3.2'/%3E%3Ccircle cx='78' cy='70' r='3.4'/%3E%3Ccircle cx='60' cy='84' r='2.2'/%3E%3Ccircle cx='86' cy='48' r='2'/%3E%3C/g%3E%3C/svg%3E");
+          --pinsel-form: polygon(1% 12%, 9% 2%, 24% 7%, 41% 0, 58% 6%, 77% 1%, 93% 5%, 100% 30%, 98% 70%, 100% 92%, 86% 100%, 66% 94%, 47% 100%, 28% 95%, 10% 100%, 0 86%, 2% 50%);
+          color-scheme: light; }
+  * { box-sizing:border-box; }
+  html { background:var(--tuerkis-hell); }
+  body { margin:0; font-family:var(--body); color:var(--text); line-height:1.55; min-height:100vh; overflow-x:hidden;
+         background:linear-gradient(180deg, var(--tuerkis) 0, #6fdcd3 380px, var(--tuerkis-hell) 900px, var(--tuerkis-hell) 100%); }
+  main { width:min(640px, 100%); margin:0 auto; padding:28px 16px 56px; position:relative; }
+  .pinsel { display:inline-block; background:var(--tuerkis); color:var(--petrol); padding:.12em .5em .08em; clip-path:var(--pinsel-form); transform:rotate(-2deg); }
+  .pinsel.dunkel { background:var(--petrol); color:#fff; }
+  .pinsel.dunkel .hl { color:var(--tuerkis); }
+  .marker { font-family:var(--marker); font-weight:400; }
+
+  /* Dreiecke – angelehnt an Hillis Tattoo */
+  .dreiecke { position:absolute; top:4px; right:2px; width:96px; height:96px; pointer-events:none; }
+  .dreieck-klein { position:absolute; width:22px; height:22px; pointer-events:none; }
+
+  header { text-align:center; position:relative; padding-top:8px; }
+  .willkommen { font-family:var(--marker); color:#fff; font-size:1.1rem; margin:0 0 .4rem; text-shadow:0 2px 0 rgba(0,0,0,.15); }
+  h1 { font-family:var(--marker); font-weight:400; margin:0; line-height:1; font-size:clamp(2.3rem, 11vw, 3.8rem); text-wrap:balance; }
+  h1 .pinsel { padding:.18em .45em .12em; background:#fff; }
+  h1 .zahl { display:inline-block; background:var(--leo-muster); background-size:70px; color:var(--petrol); padding:.02em .22em; border-radius:4px; transform:rotate(4deg); margin-left:.05em;
+             -webkit-text-stroke:0; text-shadow:0 0 6px #fff, 0 0 2px #fff; outline:3px solid var(--petrol); }
+  .unterzeile { margin:.9rem 0 0; }
+  .unterzeile .pinsel { font-family:var(--marker); font-size:clamp(1rem, 4.4vw, 1.3rem); transform:rotate(1.5deg); }
+
+  .poster { margin:1.6rem auto 0; background:var(--leo-muster); background-size:90px; padding:12px; border-radius:6px; box-shadow:0 14px 34px rgba(0,50,50,.28); transform:rotate(-1.2deg); }
+  .poster svg { width:100%; height:auto; display:block; border-radius:3px; background:#e9fbf9; }
+  .poster figcaption { font-family:var(--marker); background:#fff; display:inline-block; padding:.1em .6em; margin-top:8px; font-size:.95rem; transform:rotate(1deg); }
+
+  .karte { background:var(--weiss); border-radius:8px; padding:1.5rem 1.4rem; margin-top:1.6rem; box-shadow:0 10px 26px rgba(0,60,60,.13); position:relative; }
+  .karte:nth-of-type(odd) { transform:rotate(.5deg); }
+  .karte:nth-of-type(even) { transform:rotate(-.5deg); }
+  .karte h2 { margin:0 0 1rem; font-family:var(--marker); font-weight:400; font-size:1.5rem; line-height:1.1; }
+  .gruss { font-size:1.07rem; }
+  .gruss p { margin:0 0 .65rem; } .gruss p:last-child { margin:0; }
+
+  /* Platzhalter deutlich sichtbar machen */
+  .platz { background:repeating-linear-gradient(-45deg, #fff8d6 0 8px, #fff1b3 8px 16px); border:2px dashed #d9a400; border-radius:6px; padding:.05em .35em; font-weight:700; color:#6b4d00; }
+  p.platz, div.platz { display:block; padding:.7rem .9rem; font-weight:600; }
+  .pinsel .platz { color:#6b4d00; font-weight:400; }
+
+  .datum { text-align:center; margin:.2rem 0 1.3rem; }
+  .datum .pinsel { font-family:var(--marker); font-size:clamp(2rem, 10vw, 2.8rem); padding:.15em .5em .1em; }
+  .datum p { margin:.7rem 0 0; font-weight:800; font-size:1.1rem; }
+  .ortzeile { display:flex; gap:.75rem; align-items:flex-start; }
+  .ortzeile .symbol { font-size:1.5rem; line-height:1.2; }
+  .ortzeile strong { display:block; font-size:1.1rem; }
+  .ortzeile p { margin:0; min-width:0; }
+
+  ol.plan { list-style:none; margin:0; padding:0; display:grid; gap:.9rem; }
+  ol.plan li { display:grid; grid-template-columns:5.6rem 1fr; gap:.8rem; align-items:center; }
+  .zeit { font-family:var(--marker); font-size:1.15rem; text-align:center; }
+  .zeit.pinsel { background:var(--petrol); color:var(--tuerkis); transform:rotate(-3deg); }
+
+  .zelt-info { display:grid; grid-template-columns:auto 1fr; gap:.4rem .7rem; margin:0; }
+  .zelt-info dt { font-size:1.3rem; line-height:1.3; }
+  .zelt-info dd { margin:0; }
+
+  .fotowand { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
+  .fotowand figure { margin:0; background:#fff; padding:6px 6px 8px; border-radius:3px; box-shadow:0 4px 14px rgba(0,0,0,.16); position:relative; }
+  .fotowand figure::before { content:""; position:absolute; top:-8px; left:50%; width:44px; height:16px; transform:translateX(-50%) rotate(-4deg); background:var(--leo-muster); background-size:40px; opacity:.9; }
+  .fotowand figure:nth-child(odd) { transform:rotate(-2.5deg); }
+  .fotowand figure:nth-child(even) { transform:rotate(2deg); }
+  .fotowand .leer { aspect-ratio:1; max-width:100%; display:grid; place-items:center; background:var(--tuerkis-hell); color:var(--tuerkis-tief); font-family:var(--marker); font-size:.9rem; text-align:center; border:2px dashed var(--tuerkis); }
+  @media (max-width: 480px) { .fotowand { grid-template-columns:repeat(2, 1fr); } }
+
+  .btn { font-family:var(--marker); font-size:1.35rem; border:3px solid var(--petrol); background:var(--tuerkis); color:var(--petrol);
+         padding:.7rem 1.4rem; border-radius:10px; cursor:pointer; box-shadow:5px 5px 0 var(--petrol); width:100%; transition:transform .1s, box-shadow .1s; }
+  .btn:hover { transform:translate(-1px,-1px); box-shadow:6px 6px 0 var(--petrol); }
+  .btn:active { transform:translate(3px,3px); box-shadow:2px 2px 0 var(--petrol); }
+  .btn:focus-visible { outline:3px solid #fff; outline-offset:3px; }
+  .btn:disabled { opacity:.6; cursor:wait; }
+  .frist { text-align:center; margin:0 0 1rem; }
+  .frist .pinsel { font-family:var(--marker); font-size:1.15rem; transform:rotate(1.5deg); }
+  .frist-text { margin:-.4rem 0 1.1rem; color:var(--leise); }
+  .aufruf { margin-top:2rem; transform:rotate(-1deg); }
+  label, .frage { display:block; font-weight:800; margin:0 0 .35rem; }
+  .feld { margin-bottom:1.1rem; }
+  input[type=text], input[type=number], textarea { width:100%; font:inherit; font-size:1rem; padding:.7rem .8rem; border:2px solid #b9d6d4; border-radius:10px; background:#fff; color:var(--text); }
+  input:focus, textarea:focus { outline:none; border-color:var(--petrol); box-shadow:0 0 0 3px var(--tuerkis); }
+  textarea { resize:vertical; }
+  .reihe { display:flex; gap:12px; flex-wrap:wrap; } .reihe .feld { flex:1 1 120px; }
+  .check { display:flex; align-items:center; gap:.6rem; cursor:pointer; }
+  .check input, .wahl input { width:1.25rem; height:1.25rem; accent-color:var(--tuerkis-tief); flex:none; }
+  .wahl { display:flex; gap:.6rem 1.5rem; flex-wrap:wrap; }
+  .wahl label { display:flex; align-items:center; gap:.45rem; font-weight:600; cursor:pointer; margin:0; }
+  .absage { color:var(--leise); }
+  .optional { font-weight:400; color:var(--leise); }
+  .unterfeld { margin-top:.8rem; padding-left:1rem; border-left:4px solid var(--tuerkis-hell); display:grid; gap:.9rem; }
+  .unterfeld .feld { margin:0; }
+  .info { margin:0; padding:.6rem .8rem; background:#e3faf7; border-left:4px solid var(--tuerkis); border-radius:6px; font-size:.92rem; }
+  .hinweis { margin-top:.8rem; min-height:1.2em; font-size:.95rem; }
+  .fehler { color:#c0392b; }
+
+  /* Sticker: laut für Demokratie */
+  .sticker-zeile { display:flex; justify-content:center; margin-top:2.4rem; }
+  .sticker { width:min(250px, 80vw); aspect-ratio:1; max-width:100%; border-radius:50%; background:var(--petrol); color:#fff; display:grid; place-content:center; text-align:center; padding:1.6rem;
+             box-shadow:0 10px 24px rgba(0,50,50,.3), inset 0 0 0 6px var(--petrol), inset 0 0 0 10px var(--tuerkis); transform:rotate(-7deg); }
+  .sticker .gross { font-family:var(--marker); font-size:1.45rem; line-height:1.05; color:var(--tuerkis); margin:0 0 .45rem; }
+  .sticker .klein { margin:0; font-size:.88rem; font-weight:700; line-height:1.3; }
+
+  .leo-band { height:16px; margin:2.4rem -16px 0; background:var(--leo-muster); background-size:60px; }
+  footer { text-align:center; margin-top:1.4rem; }
+  footer .pinsel { font-family:var(--marker); font-size:1rem; transform:rotate(-1deg); }
+
+  /* Bewegung im Bild */
+  .wimpel { transform-origin:50% 0; animation:wehen 3.2s ease-in-out infinite; }
+  .wimpel:nth-child(even) { animation-delay:-1.6s; }
+  @keyframes wehen { 0%,100% { transform:rotate(-4deg); } 50% { transform:rotate(4deg); } }
+  .note { animation:schweben 4s ease-in-out infinite; }
+  .note.n2 { animation-delay:-1.3s; } .note.n3 { animation-delay:-2.6s; }
+  @keyframes schweben { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-9px); } }
+  [hidden] { display:none !important; }
+  @media (prefers-reduced-motion: reduce) { .wimpel, .note { animation:none; } }
+</style>
+</head>
+<body>
+<main>
+  <svg class="dreiecke" viewBox="0 0 100 100" aria-hidden="true">
+    <path d="M50 10 L90 82 L10 82 Z" fill="none" stroke="#fff" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M50 34 L72 72 L28 72 Z" fill="#0d3437" opacity=".85"/>
+  </svg>
+  <svg class="dreieck-klein" style="left:8px;top:26px" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2 L18 17 L2 17 Z" fill="none" stroke="#0d3437" stroke-width="2.5" stroke-linejoin="round"/></svg>
+  <svg class="dreieck-klein" style="left:38px;top:8px;width:14px;height:14px" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2 L18 17 L2 17 Z" fill="#fff"/></svg>
+
+  <header>
+    <p class="willkommen">Schön, dass du da bist!</p>
+    <h1><span class="pinsel">Hilli wird <span class="zahl">XX</span>!</span></h1>
+    <p class="unterzeile"><span class="pinsel dunkel">Gartenparty im <span class="hl">Sommer 2027</span></span></p>
+
+    <figure class="poster">
+      <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schrebergarten mit Gartenlaube, einem türkisen Zelt, einer Wimpelkette und Musiknoten">
+        <defs>
+          <pattern id="leo" width="40" height="40" patternUnits="userSpaceOnUse">
+            <rect width="40" height="40" fill="#e8c088"/>
+            <g fill="#c4843f"><ellipse cx="10" cy="10" rx="5" ry="4"/><ellipse cx="29" cy="27" rx="5" ry="4"/></g>
+            <g fill="none" stroke="#2b1a10" stroke-width="2.4" stroke-linecap="round"><path d="M4 9 Q5 4 10 4"/><path d="M15 7 Q17 11 14 15"/><path d="M8 16 Q4 15 4 12"/><path d="M23 26 Q24 21 29 21"/><path d="M34 24 Q36 28 33 32"/><path d="M27 33 Q23 33 23 30"/></g>
+            <g fill="#2b1a10"><circle cx="34" cy="8" r="2"/><circle cx="7" cy="32" r="2.2"/><circle cx="19" cy="36" r="1.4"/></g>
+          </pattern>
+        </defs>
+        <!-- Rasen -->
+        <path d="M0 206 Q120 190 240 200 T480 196 L480 270 L0 270 Z" fill="#8fd18a"/>
+        <path d="M0 226 Q140 214 260 224 T480 220 L480 270 L0 270 Z" fill="#74bf70"/>
+        <!-- Zaun -->
+        <g fill="#fff" stroke="#c9dcd9" stroke-width="1.5">
+          <rect x="6" y="168" width="9" height="44" rx="2"/><rect x="22" y="168" width="9" height="44" rx="2"/><rect x="38" y="168" width="9" height="44" rx="2"/>
+          <rect x="434" y="166" width="9" height="44" rx="2"/><rect x="450" y="166" width="9" height="44" rx="2"/><rect x="466" y="166" width="9" height="44" rx="2"/>
+        </g>
+        <!-- Gartenlaube -->
+        <rect x="62" y="128" width="128" height="84" fill="#f6efe2" stroke="#0d3437" stroke-width="3"/>
+        <path d="M50 132 L126 82 L202 132 Z" fill="#0b8a83" stroke="#0d3437" stroke-width="3" stroke-linejoin="round"/>
+        <rect x="80" y="150" width="34" height="28" fill="#bff3ee" stroke="#0d3437" stroke-width="3"/>
+        <path d="M97 150 V178 M80 164 H114" stroke="#0d3437" stroke-width="2"/>
+        <rect x="134" y="152" width="34" height="60" fill="#1cc6bb" stroke="#0d3437" stroke-width="3"/>
+        <circle cx="160" cy="184" r="2.6" fill="#0d3437"/>
+        <!-- Blumenkasten in Leo -->
+        <rect x="76" y="178" width="42" height="9" fill="url(#leo)" stroke="#0d3437" stroke-width="2"/>
+        <g fill="#ff7aa8"><circle cx="84" cy="176" r="3.5"/><circle cx="97" cy="175" r="3.5"/><circle cx="110" cy="176" r="3.5"/></g>
+        <!-- Zelt -->
+        <path d="M268 214 L338 126 L408 214 Z" fill="#1cc6bb" stroke="#0d3437" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M338 126 L318 214 L358 214 Z" fill="#0b8a83" stroke="#0d3437" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M338 160 L326 214 L350 214 Z" fill="#0d3437"/>
+        <path d="M338 126 L338 114" stroke="#0d3437" stroke-width="3" stroke-linecap="round"/>
+        <path d="M338 114 L352 118 L338 122" fill="url(#leo)" stroke="#0d3437" stroke-width="1.5" stroke-linejoin="round"/>
+        <!-- Wimpelkette -->
+        <path d="M0 22 Q240 74 480 22" fill="none" stroke="#0d3437" stroke-width="2"/>
+        <g stroke="#0d3437" stroke-width="1.5" stroke-linejoin="round">
+          <g class="wimpel"><path d="M36 30 L60 35 L46 62 Z" fill="#1cc6bb"/></g>
+          <g class="wimpel"><path d="M86 39 L110 43 L96 70 Z" fill="url(#leo)"/></g>
+          <g class="wimpel"><path d="M138 45 L162 48 L149 75 Z" fill="#fff"/></g>
+          <g class="wimpel"><path d="M190 48 L214 49 L202 77 Z" fill="#1cc6bb"/></g>
+          <g class="wimpel"><path d="M242 49 L266 48 L255 77 Z" fill="url(#leo)"/></g>
+          <g class="wimpel"><path d="M294 47 L318 45 L307 73 Z" fill="#fff"/></g>
+          <g class="wimpel"><path d="M346 43 L370 39 L360 67 Z" fill="#1cc6bb"/></g>
+          <g class="wimpel"><path d="M398 36 L422 31 L413 59 Z" fill="url(#leo)"/></g>
+        </g>
+        <!-- Musiknoten: Popchor -->
+        <g fill="#0d3437">
+          <g class="note"><ellipse cx="232" cy="132" rx="7" ry="5" transform="rotate(-20 232 132)"/><rect x="237" y="100" width="2.6" height="31"/><path d="M239.6 100 Q252 106 249 118 Q247 110 239.6 108 Z"/></g>
+          <g class="note n2"><ellipse cx="420" cy="118" rx="6" ry="4.5" transform="rotate(-20 420 118)"/><ellipse cx="444" cy="112" rx="6" ry="4.5" transform="rotate(-20 444 112)"/><rect x="424.5" y="90" width="2.4" height="27"/><rect x="448.5" y="84" width="2.4" height="27"/><path d="M424.5 90 L450.9 84 L450.9 90 L424.5 96 Z"/></g>
+          <g class="note n3"><ellipse cx="214" cy="176" rx="5" ry="3.8" transform="rotate(-20 214 176)" fill="#0b8a83"/><rect x="218" y="152" width="2.2" height="23" fill="#0b8a83"/></g>
+        </g>
+      </svg>
+      <figcaption>Laube, Zelt &amp; Wimpel – Sommer im Schrebergarten</figcaption>
+    </figure>
+  </header>
+
+  <section class="karte gruss">
+    <h2><span class="pinsel">Hallo!</span></h2>
+    <p class="platz">Platzhalter Einladungstext: Hier kommt ein persönlicher Gruß von Hilli hin – z. B. warum gefeiert wird und worauf sie sich freut.</p>
+    <p>Gefeiert wird draußen im Schrebergarten. Wer mag, bleibt über Nacht und schläft im Zelt auf der Wiese. Gib das einfach bei der Anmeldung an. ⛺</p>
+    <p><strong>Bitte gib bis zum <span class="platz">TT.MM.JJJJ</span> Bescheid, ob du dabei bist.</strong> 📬</p>
+  </section>
+
+  <section class="karte">
+    <h2><span class="pinsel">Wann &amp; wo?</span></h2>
+    <div class="datum">
+      <span class="pinsel dunkel"><span class="platz">TT.MM.</span> <span class="hl">2027</span></span>
+      <p>Samstag · ab <span class="platz">hh:mm</span> Uhr</p>
+    </div>
+    <div class="ortzeile"><span class="symbol">📍</span><p><strong>Schrebergarten</strong>
+      <span class="platz">Name der Kleingartenanlage, Parzelle, Adresse</span></p></div>
+  </section>
+
+  <section class="karte">
+    <h2><span class="pinsel">Der Plan</span></h2>
+    <ol class="plan">
+      <li><span class="zeit pinsel">ab ??</span><span>Ankommen, Kaffee &amp; Kuchen im Garten ☕🍰</span></li>
+      <li><span class="zeit pinsel">abends</span><span>Grillen und Buffet 🍽️</span></li>
+      <li><span class="zeit pinsel">später</span><span>Lagerfeuer und gemeinsames Singen 🎶</span></li>
+      <li><span class="zeit pinsel">Sonntag</span><span>Frühstück für alle, die im Zelt geschlafen haben 🥐</span></li>
+    </ol>
+    <p class="platz" style="margin:1rem 0 0">Platzhalter: Ablauf und Uhrzeiten anpassen, sobald sie feststehen.</p>
+  </section>
+
+  <section class="karte">
+    <h2><span class="pinsel">Übernachten im Zelt</span></h2>
+    <dl class="zelt-info">
+      <dt>⛺</dt><dd>Platz für Zelte ist auf der Wiese im Garten. Bring gern dein eigenes Zelt mit. Wenn du keins hast, sag Bescheid.</dd>
+      <dt>🛏️</dt><dd>Schlafsack und Isomatte bitte selbst mitbringen.</dd>
+      <dt>🚻</dt><dd><span class="platz">Platzhalter: Toilette, Wasser, Strom vor Ort</span></dd>
+    </dl>
+  </section>
+
+  <section class="karte">
+    <h2><span class="pinsel">Damals &amp; heute</span></h2>
+    <div class="fotowand">
+      <figure><div class="leer">Foto folgt</div></figure>
+      <figure><div class="leer">Foto folgt</div></figure>
+      <figure><div class="leer">Foto folgt</div></figure>
+      <figure><div class="leer">Foto folgt</div></figure>
+      <figure><div class="leer">Foto folgt</div></figure>
+      <figure><div class="leer">Foto folgt</div></figure>
+    </div>
+  </section>
+
+  <div class="aufruf">
+    <p class="frist"><span class="pinsel dunkel">Rückmeldung bis <span class="platz">TT.MM.JJJJ</span></span></p>
+    <button class="btn" id="zurAnmeldung" type="button">Ich bin dabei! 🎤</button>
+  </div>
+
+  <form class="karte" id="anmeldung" hidden>
+    <h2><span class="pinsel">Anmeldung</span></h2>
+    <p class="frist-text">Bitte bis zum <span class="platz">TT.MM.JJJJ</span> ausfüllen.</p>
+    <div class="feld">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required autocomplete="name">
+    </div>
+    <div class="feld">
+      <label class="check absage" for="absage"><input type="checkbox" id="absage"> Ich komme leider nicht 😢</label>
+    </div>
+    <div id="zusageFelder">
+      <div class="reihe">
+        <div class="feld">
+          <label for="erwachsene">Erwachsene</label>
+          <input type="number" id="erwachsene" min="0" max="20" value="1" required>
+        </div>
+        <div class="feld">
+          <label for="kinder">Kinder</label>
+          <input type="number" id="kinder" min="0" max="20" value="0" required>
+        </div>
+      </div>
+      <div class="feld">
+        <span class="frage">Bringst du etwas fürs Buffet mit?</span>
+        <div class="wahl">
+          <label for="buffetKuchen"><input type="radio" id="buffetKuchen" name="buffet" value="Kuchen" required> Kuchen 🍰</label>
+          <label for="buffetSalat"><input type="radio" id="buffetSalat" name="buffet" value="Salat"> Salat 🥗</label>
+          <label for="buffetNein"><input type="radio" id="buffetNein" name="buffet" value="nein"> Nein</label>
+        </div>
+      </div>
+      <div class="feld">
+        <label class="check" for="zelt"><input type="checkbox" id="zelt"> Ich möchte im Garten im Zelt übernachten ⛺</label>
+        <div class="unterfeld" id="zeltFelder" hidden>
+          <div class="feld">
+            <label for="zeltPersonen">Für wie viele Personen?</label>
+            <input type="number" id="zeltPersonen" min="1" max="20" value="1">
+          </div>
+          <div class="feld">
+            <span class="frage">Hast du ein eigenes Zelt?</span>
+            <div class="wahl">
+              <label for="zeltEigen"><input type="radio" id="zeltEigen" name="eigenesZelt" value="ja"> Ja, bringe ich mit</label>
+              <label for="zeltBrauche"><input type="radio" id="zeltBrauche" name="eigenesZelt" value="nein"> Nein, ich brauche einen Platz</label>
+            </div>
+          </div>
+          <p class="info">ℹ️ Schlafsack und Isomatte bitte selbst mitbringen.</p>
+        </div>
+      </div>
+    </div>
+    <div class="feld">
+      <label for="kommentar">Kommentar <span class="optional">(freiwillig)</span></label>
+      <textarea id="kommentar" rows="3" placeholder="z. B. Allergien, Fragen, Liedwünsche oder liebe Grüße"></textarea>
+    </div>
+    <button class="btn" type="submit" id="senden">Anmeldung absenden</button>
+    <div class="hinweis" id="hinweis"></div>
+  </form>
+
+  <div class="karte" id="danke" hidden>
+    <h2 id="dankeTitel" class="marker">Danke! 🎉</h2>
+    <p style="margin:0" id="dankeText">Deine Anmeldung ist angekommen. Hilli freut sich auf dich!</p>
+    <p style="margin:.6rem 0 0" class="platz" id="testHinweis" hidden>Testmodus: Die Anmeldung wurde noch nicht gespeichert, weil noch keine Ziel-Adresse eingetragen ist.</p>
+  </div>
+
+  <div class="sticker-zeile">
+    <div class="sticker">
+      <p class="gross">Laut für Demokratie!</p>
+      <p class="klein">Wir singen für Vielfalt und Zusammenhalt. Kein Platz für Hass – kein Platz für die AfD.</p>
+    </div>
+  </div>
+
+  <div class="leo-band" aria-hidden="true"></div>
+  <footer><span class="pinsel">Bis zum Sommer im Garten! 🌻</span></footer>
+</main>
+
+<script>
+  // Hier die Adresse des Google-Apps-Scripts eintragen, sobald die Tabelle für die Anmeldungen steht.
+  const ZIEL_URL = "";
+
+  const form = document.getElementById('anmeldung');
+  const zelt = document.getElementById('zelt');
+  const zeltFelder = document.getElementById('zeltFelder');
+  const absage = document.getElementById('absage');
+  const zusageFelder = document.getElementById('zusageFelder');
+
+  document.getElementById('zurAnmeldung').addEventListener('click', () => {
+    form.hidden = false;
+    document.querySelector('.aufruf').hidden = true;
+    form.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('name').focus({ preventScroll: true });
+  });
+
+  zelt.addEventListener('change', () => { zeltFelder.hidden = !zelt.checked; });
+
+  absage.addEventListener('change', () => {
+    zusageFelder.hidden = absage.checked;
+    zusageFelder.querySelectorAll('input').forEach(el => { el.disabled = absage.checked; });
+    document.getElementById('senden').textContent = absage.checked ? 'Absage senden' : 'Anmeldung absenden';
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const hinweis = document.getElementById('hinweis');
+    const knopf = document.getElementById('senden');
+    const kommt = !absage.checked;
+    const zeltJa = kommt && zelt.checked;
+    const eigenes = form.querySelector('input[name=eigenesZelt]:checked');
+    const daten = new URLSearchParams({
+      name: document.getElementById('name').value.trim(),
+      kommt: kommt ? 'ja' : 'nein',
+      erwachsene: kommt ? document.getElementById('erwachsene').value : '0',
+      kinder: kommt ? document.getElementById('kinder').value : '0',
+      buffet: kommt ? form.querySelector('input[name=buffet]:checked').value : '',
+      zelt: zeltJa ? 'ja' : 'nein',
+      zeltPersonen: zeltJa ? document.getElementById('zeltPersonen').value : '0',
+      eigenesZelt: zeltJa && eigenes ? eigenes.value : '',
+      kommentar: document.getElementById('kommentar').value.trim()
+    });
+    if (!kommt) {
+      document.getElementById('dankeTitel').textContent = 'Schade! 😢';
+      document.getElementById('dankeText').textContent = 'Danke, dass du Bescheid gibst. Hilli wird dich vermissen!';
+    }
+    knopf.disabled = true;
+    hinweis.className = 'hinweis';
+    hinweis.textContent = 'Wird gesendet …';
+    try {
+      if (ZIEL_URL) {
+        await fetch(ZIEL_URL, { method: 'POST', mode: 'no-cors', body: daten });
+      } else {
+        document.getElementById('testHinweis').hidden = false;
+      }
+      form.hidden = true;
+      document.getElementById('danke').hidden = false;
+      document.getElementById('danke').scrollIntoView({ behavior: 'smooth' });
+    } catch (err) {
+      hinweis.className = 'hinweis fehler';
+      hinweis.textContent = 'Das hat leider nicht geklappt. Bitte versuch es noch einmal.';
+      knopf.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
